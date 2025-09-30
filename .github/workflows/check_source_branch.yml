@@ -1,0 +1,34 @@
+name: 'Check PR Source Branch'
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches:
+      - master # O Action rodará apenas para PRs criados na branch master
+
+jobs:
+  check_source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify that PR base branch is 'homolog'
+        env:
+          PR_BASE_REF: ${{ github.event.pull_request.base.ref }} 
+          PR_HEAD_REF: ${{ github.event.pull_request.head.ref }} 
+        run: |
+          echo "Base branch (target): $PR_BASE_REF"
+          echo "Head branch (source): $PR_HEAD_REF"
+          
+          # 1. Checa se o destino é master (redundante, mas bom para clareza)
+          if [ "$PR_BASE_REF" != "master" ]; then
+            echo "Skipping check because target branch is not 'master'."
+            exit 0
+          fi
+          
+          # 2. A VERIFICAÇÃO PRINCIPAL: Checa se a origem é 'homolog'
+          if [ "$PR_HEAD_REF" != "homolog" ]; then
+            echo "::error title=Branch Protection Failed::O Pull Request para 'master' deve ser originado **SOMENTE** da branch 'homolog'. Esta PR está vindo de '$PR_HEAD_REF'."
+            exit 1 # Falha o Action
+          else
+            echo "Success! The Pull Request is correctly coming from the 'homolog' branch."
+            exit 0 # Sucesso
+          fi
