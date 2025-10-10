@@ -22,6 +22,6 @@ public interface UsuarioMapper {
     @Mapping(source = "perfil", target = "perfil")
     Usuario toEntity(CadastroUsuarioRequestDTO request);
 
-    @Mapping(source = "perfil", target = "perfil")
+    @Mapping(target = "perfil", expression = "java(usuario.getPerfil().getNome())")
     CadastroUsuarioResponseDTO toResponseDto(Usuario usuario);
 }

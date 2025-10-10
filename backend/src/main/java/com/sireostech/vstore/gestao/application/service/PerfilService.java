@@ -17,7 +17,6 @@ public class PerfilService implements PerfilContracts {
 
     @Override
     public Perfil createPerfil(Perfil perfil) {
-        // Lógica de negócio: validar unicidade, etc.
         return gateway.save(perfil);
     }
 

@@ -1,13 +1,21 @@
 package com.sireostech.vstore.gestao.domain.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -17,8 +25,8 @@ import java.util.stream.Collectors;
 @Table(name = "usuarios")
 @Data
 @RequiredArgsConstructor
-@NoArgsConstructor // Necessário para a JPA
-public class Usuario implements UserDetails {
+@NoArgsConstructor
+public class Usuario implements IdentifiablePrincipal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,6 +53,16 @@ public class Usuario implements UserDetails {
 
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
+
+    @Override
+    public Long getId() {
+        return this.id;
+    }
+
+    @Override
+    public Perfil getPerfil() {
+        return this.perfil;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -4,7 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.sireostech.vstore.gestao.domain.model.Usuario;
+import com.sireostech.vstore.gestao.domain.model.IdentifiablePrincipal;
 import com.sireostech.vstore.gestao.application.exception.JwtGenerationException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -39,13 +39,13 @@ public class JwtTokenProvider {
         }
     }
 
-    public String generateToken(Usuario usuario) {
+    public String generateToken(IdentifiablePrincipal principal) {
         Instant expirationTime = Instant.now().plus(EXPIRATION_HOURS, ChronoUnit.HOURS);
 
         return JWT.create()
                 .withIssuer(ISSUER)
-                .withSubject(usuario.getId().toString())
-                .withClaim(CLAIM_ROLE, usuario.getPerfil().toString())
+                .withSubject(principal.getId().toString())
+                .withClaim(CLAIM_ROLE, principal.getPerfil().toString())
                 .withExpiresAt(expirationTime)
                 .sign(algorithm);
     }
