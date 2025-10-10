@@ -31,7 +31,7 @@ public interface UsuarioApi {
             }
     )
 
-    @PreAuthorize("hasAuthority('ROLE_ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('clientes_gerenciar')")
     ResponseEntity<CadastroUsuarioResponseDTO> cadastrarUsuario(@RequestBody @Valid CadastroUsuarioRequestDTO request);
 
 }
