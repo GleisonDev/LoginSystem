@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/vstore
+    username: postgres
+    password: postgres
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  flyway:
+    enabled: true
+    locations:
+      - classpath:db/migration
+    baseline-on-migrate: true
+    clean-disabled: false
+    validate-on-migrate: true
+    out-of-order: true
+
+jwt:
+  secret: n999tsLfz1BKR22FnR60i3dRDJcD3TI6/70kqn1a/9M=
