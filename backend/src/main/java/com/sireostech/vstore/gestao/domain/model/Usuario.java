@@ -39,32 +39,20 @@ public class Usuario implements UserDetails {
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
 
-    // =========================================================================
-    // IMPLEMENTAÇÃO DOS MÉTODOS OBRIGATÓRIOS (CORREÇÃO DO ERRO)
-    // =========================================================================
-
-    @Override
+     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_" + this.perfil.name()));
     }
 
-    /**
-     * MÉTODO CORRIGIDO: Retorna o campo de senha criptografada (senhaHash).
-     */
     @Override
     public String getPassword() {
         return this.senhaHash;
     }
 
-    /**
-     * MÉTODO CORRIGIDO: Retorna o campo de identificação (nomeUsuario).
-     */
     @Override
     public String getUsername() {
         return this.nomeUsuario;
     }
-
-    // --- Métodos de Status (Também devem ser explicitamente declarados) ---
 
     @Override
     public boolean isAccountNonExpired() {

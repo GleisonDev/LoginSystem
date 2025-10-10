@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7.2.5-alpine # Imagem oficial do Redis leve e estável
+    container_name: vstore-redis # Nome do container
+    restart: always # Garante que ele reinicie se cair
+    ports:
+      - "6379:6379" # Mapeia a porta 6379 do host para a porta 6379 do container
+    command: redis-server --appendonly yes # Configuração para persistência de dados (opcional, mas recomendado)
+    volumes:
+      # Mapeia um volume para persistir os dados do Redis (opcional, mas recomendado)
+      - redis_data:/data
+
+# Volumes para persistência de dados
+volumes:
+  redis_data:
+    driver: local
