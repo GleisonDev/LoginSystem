@@ -1,6 +1,6 @@
-VStore API de Gestão
-🚀 Objetivo do Projeto
-Este projeto visa desenvolver a API de Gestão para o ecossistema VStore. O principal objetivo é criar uma base sólida, segura e eficiente para a administração de usuários, clientes, produtos e outros recursos essenciais para o funcionamento de uma plataforma de vendas.
+vStore API de Gestão
+✨ Objetivo Principal do Projeto
+Este projeto visa desenvolver a API de Gestão para o ecossistema vStore. O principal objetivo é criar uma base sólida, segura e eficiente para a administração de usuários, clientes, produtos e outros recursos essenciais para o funcionamento de uma plataforma de e-commerce.
 
 A arquitetura está focada em:
 
@@ -12,7 +12,7 @@ Flexibilidade: Desenvolvida para suportar múltiplos tipos de usuários (Funcion
 
 O foco é fornecer um backend limpo, manutenível e escalável, que servirá como espinha dorsal para todas as operações de gerenciamento de dados da loja.
 
-Tecnologias Principais
+🛠️ Tecnologias Principais
 Linguagem: Java
 
 Framework: Spring Boot
@@ -25,4 +25,4 @@ Banco de Dados: PostgreSQL
 
 Cache/Token Management: Redis
 
-Mapeamento: 
+Mapeamento: MapStruct
