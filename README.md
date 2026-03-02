@@ -1,7 +1,7 @@
-# VStore API de Gestão
+# Login System
 ## ✨ Objetivo Principal do Projeto
 
-Este projeto visa desenvolver a API de Gestão para o ecossistema vStore. O principal objetivo é criar uma base sólida, segura e eficiente para a administração de usuários, clientes, produtos e outros recursos essenciais para o funcionamento de uma plataforma de vendas.
+Este projeto visa desenvolver a API para login de sistema. O principal objetivo é criar uma base sólida e segura.
 
 ## A arquitetura está focada em:
 
